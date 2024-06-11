@@ -19,6 +19,7 @@ import { FormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { KeycloakService } from './services/keycloak.service';
+import { LoginComponent } from './components/login/login.component';
 
 export function kcFactory(kcService: KeycloakService) {
   return () => kcService.init();
@@ -30,6 +31,7 @@ export function kcFactory(kcService: KeycloakService) {
     MainLayoutComponent,
     ChooseLanguageComponent,
     EmployeesTableComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
