@@ -1,9 +1,12 @@
 import { Injectable } from '@angular/core';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class KeycloakService {
+  constructor() {}
 
-  constructor() { }
+  async init() {
+    console.log('Initializing keycloak');
+  }
 }

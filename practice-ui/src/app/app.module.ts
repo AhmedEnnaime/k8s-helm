@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -18,7 +18,11 @@ import { MatSelectModule } from '@angular/material/select';
 import { FormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { KeycloakService } from './services/keycloak.service';
 
+export function kcFactory(kcService: KeycloakService) {
+  return () => kcService.init();
+}
 @NgModule({
   declarations: [
     AppComponent,
@@ -48,7 +52,14 @@ import { MatFormFieldModule } from '@angular/material/form-field';
       defaultLanguage: 'en',
     }),
   ],
-  providers: [],
+  providers: [
+    {
+      provide: APP_INITIALIZER,
+      deps: [KeycloakService],
+      useFactory: kcFactory,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
