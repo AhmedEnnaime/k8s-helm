@@ -18,6 +18,8 @@ export class HttpTokenInterceptor implements HttpInterceptor {
     next: HttpHandler
   ): Observable<HttpEvent<unknown>> {
     const token = this.keycloakService.keycloak.token;
+    console.log('Token is ' + token);
+
     if (token) {
       const authReq = request.clone({
         headers: new HttpHeaders({

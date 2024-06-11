@@ -1,11 +1,16 @@
 spring:
   application:
     name: practice
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: "http://localhost:9090/realms/practice-network"
   mail:
     host: smtp.gmail.com
     port: 465
-    username:
-    password: 
+    username: ahmedennaime20@gmail.com
+    password: djzs tpii pvwr tcyn
     properties:
       mail:
         smtp:
@@ -14,9 +19,9 @@ spring:
             enable: true
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: ${SPRING_DATASOURCE_URL}
-    username: ${SPRING_DATASOURCE_USERNAME}
-    password: ${SPRING_DATASOURCE_PASSWORD}
+    url: jdbc:postgresql://localhost:5432/practice
+    username: ahmedennaime
+    password:
   jpa:
     hibernate:
       ddl-auto: update

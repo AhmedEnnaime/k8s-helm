@@ -10,7 +10,7 @@
     </parent>
     <groupId>com.learning</groupId>
     <artifactId>practice</artifactId>
-<!--    <version>0.0.1-SNAPSHOT</version>-->
+    <!--    <version>0.0.1-SNAPSHOT</version>-->
     <name>practice</name>
     <description>practice</description>
     <properties>
@@ -104,6 +104,10 @@
             <version>4.6.0</version>
         </dependency>
         <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-oauth2-resource-server</artifactId>
+        </dependency>
+        <dependency>
             <groupId>org.apache.camel</groupId>
             <artifactId>camel-mail</artifactId>
             <version>4.6.0</version>
@@ -117,36 +121,36 @@
 
     <build>
         <plugins>
-            <plugin>
-                <groupId>org.openapitools</groupId>
-                <artifactId>openapi-generator-maven-plugin</artifactId>
-                <version>7.3.0</version>
-                <executions>
-                    <execution>
-                        <id>employees-api</id>
-                        <goals>
-                            <goal>generate</goal>
-                        </goals>
-                        <configuration>
-                            <inputSpec>${project.basedir}/src/main/resources/openapi/employees/employees-api.yml</inputSpec>
-                            <configurationFile>${project.basedir}/openapi-generator-config-employees.json
-                            </configurationFile>
-                            <ignoreFileOverride>${project.basedir}/.openapi-generator-ignore</ignoreFileOverride>
-                            <generatorName>spring</generatorName>
-                            <library>spring-boot</library>
-                            <typeMappings>
-                                <typeMapping>OffsetDateTime=Instant</typeMapping>
-                            </typeMappings>
-                            <importMappings>
-                                <importMapping>java.time.OffsetDateTime=java.time.Instant</importMapping>
-                            </importMappings>
-                            <inlineSchemaOptions>
-                                <inlineSchemaOption>ARRAY_ITEM_SUFFIX=</inlineSchemaOption>
-                            </inlineSchemaOptions>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
+<!--            <plugin>-->
+<!--                <groupId>org.openapitools</groupId>-->
+<!--                <artifactId>openapi-generator-maven-plugin</artifactId>-->
+<!--                <version>7.3.0</version>-->
+<!--                <executions>-->
+<!--                    <execution>-->
+<!--                        <id>employees-api</id>-->
+<!--                        <goals>-->
+<!--                            <goal>generate</goal>-->
+<!--                        </goals>-->
+<!--                        <configuration>-->
+<!--                            <inputSpec>${project.basedir}/src/main/resources/openapi/employees/employees-api.yml</inputSpec>-->
+<!--                            <configurationFile>${project.basedir}/openapi-generator-config-employees.json-->
+<!--                            </configurationFile>-->
+<!--                            <ignoreFileOverride>${project.basedir}/.openapi-generator-ignore</ignoreFileOverride>-->
+<!--                            <generatorName>spring</generatorName>-->
+<!--                            <library>spring-boot</library>-->
+<!--                            <typeMappings>-->
+<!--                                <typeMapping>OffsetDateTime=Instant</typeMapping>-->
+<!--                            </typeMappings>-->
+<!--                            <importMappings>-->
+<!--                                <importMapping>java.time.OffsetDateTime=java.time.Instant</importMapping>-->
+<!--                            </importMappings>-->
+<!--                            <inlineSchemaOptions>-->
+<!--                                <inlineSchemaOption>ARRAY_ITEM_SUFFIX=</inlineSchemaOption>-->
+<!--                            </inlineSchemaOptions>-->
+<!--                        </configuration>-->
+<!--                    </execution>-->
+<!--                </executions>-->
+<!--            </plugin>-->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-antrun-plugin</artifactId>
@@ -162,6 +166,7 @@
                             <target> generated-sources/openapi/src/main/java/com/learning/practice/OpenApiGeneratorApplication.java
                                 <delete dir="${project.build.directory}/generated-sources/openapi/src/test" />
                                 <delete dir="${project.build.directory}/generated-sources/openapi/src/main/java/com/learning/practice/config"/>
+                                <delete dir="${project.build.directory}/generated-sources/openapi/src/main/test"/>
                                 <delete file="${project.build.directory}/generated-sources/openapi/src/main/java/com/learning/practice/OpenApiGeneratorApplication.java"/>
                             </target>
                         </configuration>

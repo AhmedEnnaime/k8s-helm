@@ -7,7 +7,11 @@ import { ApiModule } from 'client/src/app/core/modules/openapi';
 import { HomeComponent } from './pages/home/home.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MainLayoutComponent } from './shared/main-layout/main-layout.component';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import {
+  HTTP_INTERCEPTORS,
+  HttpClient,
+  HttpClientModule,
+} from '@angular/common/http';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { HttpLoaderFactory } from './utils/http-loader-factory';
 import { ChooseLanguageComponent } from './components/choose-language/choose-language.component';
@@ -20,6 +24,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { KeycloakService } from './services/keycloak.service';
 import { LoginComponent } from './components/login/login.component';
+import { HttpTokenInterceptor } from './services/interceptors/http-token.interceptor';
 
 export function kcFactory(kcService: KeycloakService) {
   return () => kcService.init();
@@ -55,6 +60,12 @@ export function kcFactory(kcService: KeycloakService) {
     }),
   ],
   providers: [
+    HttpClient,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttpTokenInterceptor,
+      multi: true,
+    },
     {
       provide: APP_INITIALIZER,
       deps: [KeycloakService],
