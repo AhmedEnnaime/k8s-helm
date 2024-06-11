@@ -20,7 +20,6 @@ public class EmployeeServiceImpl implements EmployeeService {
     private final EmployeeRepository employeeRepository;
     private final ModelMapper modelMapper;
     private final EmailService emailService;
-    private final EmailServiceImpl emailServiceImpl;
 
     @Override
     public List<EmployeeDto> findAll() {
@@ -31,7 +30,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     public EmployeeDto save(EmployeeDto employeeDto) {
         Employee employee = modelMapper.map(employeeDto, Employee.class);
         Employee savedEmployee = employeeRepository.save(employee);
-        emailServiceImpl.sendEmail("ahmedennaime36@gmail.com", "New Employee Joined", "A new employee Joined with the name " + savedEmployee.getFirstName() + " " + savedEmployee.getLastName());
+        emailService.sendEmail("ahmedennaime36@gmail.com", "New Employee Joined", "A new employee Joined with the name " + savedEmployee.getFirstName() + " " + savedEmployee.getLastName());
         return modelMapper.map(savedEmployee, EmployeeDto.class);
     }
 
