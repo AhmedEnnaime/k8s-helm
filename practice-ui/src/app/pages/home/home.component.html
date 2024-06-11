@@ -1,0 +1,11 @@
+<div class="flex flex-col gap-6">
+    <div class="flex justify-between p-4 items-center">
+        <h1 class="text-blue-400 text-center text-4xl">{{ "welcome" | translate }}</h1>
+        <app-choose-language></app-choose-language>
+    </div>
+
+    <div class=" w-full items-center p-4">
+        <h2 class="mb-4 text-2xl">{{ "employees" | translate }}</h2>
+        <app-employees-table></app-employees-table>
+    </div>
+</div>

@@ -1,0 +1,6 @@
+<mat-form-field>
+    <mat-label>Languages</mat-label>
+    <select (change)="setLanguage($event)" matNativeControl required>
+        <option *ngFor="let lan of languages">{{ lan }}</option>
+    </select>
+</mat-form-field>
