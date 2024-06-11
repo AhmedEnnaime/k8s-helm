@@ -1,0 +1,44 @@
+deleteEmployee:
+  delete:
+    summary: Delete Employee
+    description: Delete an existing employee
+    operationId: deleteEmployee
+    tags:
+      - Employees
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: The ID of the employee to delete
+    responses:
+      200:
+        description: Employee deleted successfully
+        content:
+          application/json:
+            schema:
+              $ref: 'responses.yml#/EmployeeResponse'
+            examples:
+              Example response:
+                $ref: 'responses.yml#/examples/responses/EmployeeDeletedSuccessfullyResponse'
+      404:
+        description: Employee not found
+        content:
+          application/json:
+            schema:
+              $ref: '../common.yml#/notFoundResponse'
+            examples:
+              Employee not found:
+                $ref: '../common.yml#/examples/responses/notFoundResponse'
+      500:
+        description: Error
+        content:
+          application/json:
+            schema:
+              $ref: '../common.yml#/errorResponse'
+            examples:
+              Example internal server error:
+                $ref: '../common.yml#/examples/responses/errorResponse/InternalServerError'
+              Example database connection failure:
+                $ref: '../common.yml#/examples/responses/errorResponse/DatabaseConnectionFailure'

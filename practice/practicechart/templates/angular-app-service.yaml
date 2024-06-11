@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Release.Name }}-angular-app-service
+spec:
+  selector:
+    app: {{ .Release.Name }}-angular-app
+  ports:
+    - protocol: TCP
+      port: 4200
+      targetPort: 4200
+  type: LoadBalancer

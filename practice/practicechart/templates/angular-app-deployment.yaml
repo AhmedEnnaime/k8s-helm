@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-angular-app-deployment
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ .Release.Name }}-angular-app
+  template:
+    metadata:
+      labels:
+        app: {{ .Release.Name }}-angular-app
+    spec:
+      containers:
+        - name: {{ .Release.Name }}-angular-app-container
+          image: {{ .Values.angularApp.image.repository }}:{{ .Values.angularApp.image.tag }}
+          imagePullPolicy: {{ .Values.angularApp.image.pullPolicy }}
+          ports:
+            - containerPort: 4200

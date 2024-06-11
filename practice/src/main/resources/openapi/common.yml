@@ -1,0 +1,113 @@
+invalidResponse:
+  type: object
+  required: [ responseCode,status,reason ]
+  properties:
+    responseCode:
+      nullable: false
+      type: integer
+      minimum: 0
+      pattern: '^400$'
+      description: The response code. Will always have 400 as a value indicating technical field validation error.
+      default: 400
+      example: 400
+    status:
+      nullable: false
+      type: string
+      pattern: '^Invalid$'
+      description: Will always have *Invalid* as a value indicating that technical fields validations against the schema have failed. For example, if the request fields do not match the specified pattern.
+      default: 'Invalid'
+      example: 'Invalid'
+    reason:
+      nullable: false
+      type: string
+      description: This field will indicate the failure reason.
+      example: 'requestId must not be null'
+
+notFoundResponse:
+  type: object
+  required: [ responseCode, status, reason ]
+  properties:
+    responseCode:
+      nullable: false
+      type: integer
+      minimum: 0
+      pattern: '^404$'
+      description: The response code. Will always have 404 as a value indicating that the requested resource was not found.
+      default: 404
+      example: 404
+    status:
+      nullable: false
+      type: string
+      pattern: '^NotFound$'
+      description: Will always have *NotFound* as a value indicating that the requested resource was not found.
+      default: 'NotFound'
+      example: 'NotFound'
+    reason:
+      nullable: false
+      type: string
+      description: This field will indicate the reason why the resource was not found.
+      example: 'Employee with id 123 not found'
+
+errorResponse:
+  type: object
+  required: [ responseCode,status,reason ]
+  properties:
+    responseCode:
+      nullable: false
+      type: integer
+      minimum: 0
+      pattern: '^500$'
+      description: The response code. Will always have 500 as a value indicating that the server has encountered an internal error.
+      default: 500
+      example: 500
+    status:
+      nullable: false
+      type: string
+      pattern: '^Error$'
+      description: Will always have *Error* as a value indicating that the server has encountered an internal error. For example, if the database cannot be reached.
+      default: 'Error'
+      example: 'Error'
+    reason:
+      nullable: false
+      type: string
+      description: This field will always contain the same message 'An internal error has occurred'.
+      default: 'An internal error has occurred'
+      example: 'An internal error has occurred'
+
+examples:
+  responses:
+    errorResponse:
+      InternalServerError:
+        value:
+          responseCode: 500
+          status: 'Error'
+          reason: 'An internal error has occurred'
+        description: Example error response due to an internal server error
+      DatabaseConnectionFailure:
+        value:
+          responseCode: 500
+          status: 'Error'
+          reason: 'Database connection failed'
+        description: Example error response due to a database connection failure
+
+    invalidResponse:
+      FirstNameBlank:
+        value:
+          responseCode: 400
+          status: 'Invalid'
+          reason: 'firstName must not be blank'
+        description: Example invalid response when firstName is blank
+
+      SalaryNotNumber:
+         value:
+           responseCode: 400
+           status: 'Invalid'
+           reason: 'salary must be a number'
+         description: Example invalid response when salary is not a number
+
+    notFoundResponse:
+      value:
+        responseCode: 404
+        status: 'NotFound'
+        reason: 'Employee with id 123 not found'
+      description: Example not found response when an employee is not found

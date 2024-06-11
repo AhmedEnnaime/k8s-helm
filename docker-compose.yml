@@ -1,0 +1,57 @@
+version: "3.9"
+services:
+  practice-app:
+    container_name: practice-app
+    build:
+      context: ./practice
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://psql-db:5432/practice
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=admin
+    networks:
+      - practice
+    depends_on:
+      - psql-db
+  psql-db:
+    container_name: psql-db
+    image: "postgres:15"
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: "practice"
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: "admin"
+    volumes:
+      - postgres-db:/var/lib/postgresql/data
+    networks:
+      - practice
+  practice-ui:
+    container_name: practice-ui
+    build:
+      context: ./practice-ui
+      dockerfile: Dockerfile
+    ports:
+      - "4200:4200"
+    expose:
+      - "4200"
+    environment:
+      - MOD=dev
+    volumes:
+      - ./practice-ui:/app/practice-ui
+      - /app/practice-ui/node_modules
+    depends_on:
+      - practice-app
+    networks:
+      - practice
+
+networks:
+  practice:
+    driver: bridge
+
+volumes:
+  postgres-db:
+    driver: local

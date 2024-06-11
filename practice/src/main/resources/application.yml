@@ -1,0 +1,46 @@
+spring:
+  application:
+    name: practice
+  mail:
+    host: smtp.gmail.com
+    port: 465
+    username: 
+    password: 
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: ${SPRING_DATASOURCE_URL}
+    username: ${SPRING_DATASOURCE_USERNAME}
+    password: ${SPRING_DATASOURCE_PASSWORD}
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    database: postgresql
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+server:
+  port: 8080
+logging:
+  level:
+    org.springframework.data.elasticsearch: DEBUG
+    jakarta.mail: DEBUG
+    javax.net.ssl: DEBUG
+
+#logging:
+#  pattern:
+#    console: "%d %-5level %logger : %msg%n"
+#  level:
+#    org.springframework: info
+#    org.hibernate: debug
+# Swagger configuration
+#springdoc:
+#  swagger-ui:
+#    path: /swagger-ui.html # swagger-ui custom path
+#  api-docs:
+#    path: /v3/api-docs.yaml
+# spring actuator

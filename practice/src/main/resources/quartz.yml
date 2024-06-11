@@ -1,0 +1,25 @@
+org:
+  quartz:
+    threadPool:
+      class: org.quartz.simpl.SimpleThreadPool
+      threadCount: 4
+
+    scheduler:
+      instanceName: MyScheduler
+      instanceId: AUTO
+
+    jobStore:
+      class: org.quartz.impl.jdbcjobstore.JobStoreTX
+      driverDelegateClass: org.quartz.impl.jdbcjobstore.PostgreSQLDelegate
+      dataSource: quartzDataSource
+      tablePrefix: QRTZ_
+      isClustered: true
+
+    dataSource:
+      quartzDataSource:
+        URL: jdbc:postgresql://localhost:5432/quartz
+        driver: org.postgresql.Driver
+        user: ahmedennaime
+        password: ""
+    jdbc:
+      initialize-schema: never

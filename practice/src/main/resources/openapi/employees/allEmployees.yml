@@ -1,0 +1,30 @@
+allEmployees:
+  get:
+    summary: Find All Employees
+    description: Returns All the employees
+    operationId: allEmployees
+    tags:
+      - Employees
+    responses:
+      200:
+        description: Request received successfully
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: 'responses.yml#/EmployeeResponse'
+              examples:
+                Example response with two employees:
+                  $ref: 'responses.yml#/examples/responses/SuccessfulEmployeeResponse'
+      500:
+        description: Error
+        content:
+          application/json:
+            schema:
+              $ref: '../common.yml#/errorResponse'
+            examples:
+              Example internal server error:
+                $ref: '../common.yml#/examples/responses/errorResponse/InternalServerError'
+              Example database connection failure:
+                $ref: '../common.yml#/examples/responses/errorResponse/DatabaseConnectionFailure'

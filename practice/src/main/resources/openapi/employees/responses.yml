@@ -1,0 +1,37 @@
+EmployeeResponse:
+  type: object
+  required: [id, firstName, lastName, salary]
+  properties:
+    id:
+      nullable: false
+      type: number
+      description: Unique id for employee
+      example: 33
+    firstName:
+      nullable: false
+      type: string
+      description: First name of employee
+      example: Ahmed
+    lastName:
+      nullable: false
+      type: string
+      description: Last name of employee
+      example: Ennaime
+    salary:
+      nullable: true
+      type: number
+      format: double
+      description: Salary of employee
+      example: 1200.50
+examples:
+  responses:
+    SuccessfulEmployeeResponse:
+      value:
+        id: 1
+        firstName: John
+        lastName: Doe
+        salary: 5000.0
+      description: Example employee response
+    EmployeeDeletedSuccessfullyResponse:
+      value:
+        message: Employee Deleted Successfully

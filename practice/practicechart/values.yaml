@@ -1,0 +1,26 @@
+replicaCount: 1
+
+postgresql:
+  databaseName: practice
+
+springApp:
+  image:
+    repository: practice-project-practice-app
+    pullPolicy: IfNotPresent
+    tag: latest
+
+angularApp:
+  image:
+    repository: practice-project-practice-ui
+    pullPolicy: IfNotPresent
+    tag: latest
+
+postgresqlVolume:
+  persistentVolumeClaim:
+    storageSize: 500Mi
+
+  persistentVolume:
+    storageSize: 500Mi
+    pathOnHost: /var/lib/postgresql/data
+
+  mountPath: /var/lib/postgresql/data

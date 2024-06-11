@@ -1,0 +1,18 @@
+openapi: 3.0.3
+info:
+  title: Employees API
+  version: 1.0.0
+  description: API specification for employees.
+
+servers:
+  - description: Employees Server
+    url: http://localhost:8080/api
+  - url: /api
+
+paths:
+  /employees/findAll:
+    $ref: 'allEmployees.yml#/allEmployees'
+  /employees/create:
+    $ref: 'createEmployee.yml#/createEmployee'
+  /employees/delete:
+    $ref: 'deleteEmployee.yml#/deleteEmployee'

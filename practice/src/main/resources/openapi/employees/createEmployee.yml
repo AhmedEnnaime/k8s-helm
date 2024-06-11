@@ -1,0 +1,50 @@
+createEmployee:
+  post:
+    summary: Create Employee
+    description: Add One Employee To The Company
+    operationId: createEmployee
+    tags:
+      - Employees
+    requestBody:
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: 'requests.yml#/EmployeeRequest'
+          examples:
+            Example employee request:
+              $ref: 'requests.yml#/examples/requests/EmployeeRequest'
+            Example employee request with missing salary:
+              $ref: 'requests.yml#/examples/requests/MissingSalaryEmployeeRequest'
+    responses:
+      201:
+        description: Employee created successfully
+        content:
+          application/json:
+            schema:
+              $ref: 'responses.yml#/EmployeeResponse'
+            examples:
+              Example response:
+                $ref: 'responses.yml#/examples/responses/SuccessfulEmployeeResponse'
+      400:
+        description: Invalid request
+        content:
+          application/json:
+            schema:
+              $ref: '../common.yml#/invalidResponse'
+            examples:
+              Blank firstName:
+                $ref: '../common.yml#/examples/responses/invalidResponse/FirstNameBlank'
+              Invalid salary:
+                $ref: '../common.yml#/examples/responses/invalidResponse/SalaryNotNumber'
+      500:
+        description: Error
+        content:
+          application/json:
+            schema:
+              $ref: '../common.yml#/errorResponse'
+            examples:
+              Example internal server error:
+                $ref: '../common.yml#/examples/responses/errorResponse/InternalServerError'
+              Example database connection failure:
+                $ref: '../common.yml#/examples/responses/errorResponse/DatabaseConnectionFailure'
