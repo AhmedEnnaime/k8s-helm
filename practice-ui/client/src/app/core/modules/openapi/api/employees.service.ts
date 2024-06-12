@@ -44,7 +44,7 @@ import { EmployeesServiceInterface } from './employees.serviceInterface';
   providedIn: 'root',
 })
 export class EmployeesService implements EmployeesServiceInterface {
-  protected basePath = 'http://localhost:8080/api';
+  protected basePath = 'http://localhost:8082/api';
   public defaultHeaders = new HttpHeaders();
   public configuration = new Configuration();
   public encoder: HttpParameterCodec;

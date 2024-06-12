@@ -6,5 +6,5 @@ RUN mvn clean install
 FROM eclipse-temurin:17-jdk-focal
 WORKDIR /app
 COPY --from=build /app/target/practice-3.3.0.jar practice.jar
-EXPOSE 8080
+EXPOSE 8082
 ENTRYPOINT [ "java", "-jar",  "/app/practice.jar" ]

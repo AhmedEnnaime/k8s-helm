@@ -5,12 +5,12 @@ spring:
     oauth2:
       resourceserver:
         jwt:
-          issuer-uri: "http://localhost:9090/realms/practice-network"
+          issuer-uri: "http://localhost:8080/realms/practice-network"
   mail:
     host: smtp.gmail.com
     port: 465
-    username: 
-    password: 
+    username: ahmedennaime20@gmail.com
+    password: djzs tpii pvwr tcyn
     properties:
       mail:
         smtp:
@@ -29,7 +29,7 @@ spring:
     database: postgresql
     database-platform: org.hibernate.dialect.PostgreSQLDialect
 server:
-  port: 8080
+  port: 8082
 logging:
   level:
     org.springframework.data.elasticsearch: DEBUG
